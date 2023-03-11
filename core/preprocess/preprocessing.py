@@ -21,18 +21,6 @@ def find_and_crop_contours(temp: np.ndarray, image: np.ndarray) -> np.ndarray:
     
     # Find all contours in the image.
     contours, hierarchy = cv2.findContours(temp, cv2.RETR_LIST, cv2.CHAIN_APPROX_NONE)
-    
-    # Sort the contours in decreasing order
-    sorted_contours = sorted(contours, key=cv2.contourArea, reverse= True)
-    image1_copy = image.copy()
-    # Draw largest 3 contours
-    for i, cont in enumerate(sorted_contours[:10],1):
-
-        # Draw the contour
-        cv2.drawContours(image1_copy, cont, -1, (0,255,0), 3)
-    
-        # Display the position of contour in sorted list
-        cv2.putText(image1_copy, str(i), (cont[0,0,0], cont[0,0,1]-10), cv2.FONT_HERSHEY_SIMPLEX, 1.4, (0, 255, 0),4)
 
     # Retreive the biggest contour
     biggest_contour = max(contours, key = cv2.contourArea)
