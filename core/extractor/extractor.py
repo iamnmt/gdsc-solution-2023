@@ -60,7 +60,8 @@ class Extractor:
         '''
         self._process(doc)
         return self.keywords
-    
-ex = Extractor(keyphrase_ngram_range=(1, 3), threshold=0.6)
-keywords = ex.get_keywords(doc=doc)
-print(keywords)
+
+if __name__ == "__main__": 
+    ex = Extractor(keyphrase_ngram_range=(1, 3), threshold=0.6)
+    keywords = ex.get_keywords(doc=doc)
+    print(keywords)
