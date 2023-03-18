@@ -1,5 +1,9 @@
-from core.preprocess import PREPROCESS
+import numpy as np
+from core.preprocess import PREPROCESS_REGISTRY
 
-def test_add_funcition():
-    add_func = PREPROCESS.get("add")
-    assert add_func(5, 6) == 5+6+1
+def test_default_preprocessor():
+    p = PREPROCESS_REGISTRY.get("DefaultPreprocessor")()
+    x = np.random.randint(0, 255, (100, 100, 3), dtype=np.uint8)
+
+    y = p.forward(x)
+    print(y.shape)
