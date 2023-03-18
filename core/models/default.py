@@ -14,10 +14,10 @@ class BaseModel:
             else PREPROCESS_REGISTRY.get(cfg.preprocessor["name"])()
         )
         self.ocr = OCR_REGISTRY.get(cfg.ocr["name"])(**cfg.ocr["args"])
-        self.labelr = LABELER_REGISTRY.get(cfg.labeler["name"])(**cfg.labeler["args"])
+        self.labeler = LABELER_REGISTRY.get(cfg.labeler["name"])(**cfg.labeler["args"])
 
     def forward(self, image: np.ndarray) -> list[str]:
         img = self.preprocessor.forward(image)
         doc = self.ocr.forward(img)
-        labels = self.labeler.forward([doc])
+        labels = self.labeler.forward(doc)
         return labels

@@ -9,7 +9,7 @@ class DefaultLabeler:
 
     Uses KeyBERT to extract keywords from the document.
     """
-    def __init__(self, keyphrase_ngram_range: tuple, threshold: float, top_n: int) -> None:
+    def __init__(self, keyphrase_ngram_range: list, threshold: float, top_n: int) -> None:
         """
         Input:
             keyphrase_ngram_range: The maximum n-gram size to consider.
@@ -17,11 +17,11 @@ class DefaultLabeler:
             top_n: The number of keywords to extract.
         """
         self.model = KeyBERT()
-        self.keyphrase_ngram_range = keyphrase_ngram_range
+        self.keyphrase_ngram_range = tuple(keyphrase_ngram_range)
         self.threshold = threshold
         self.top_n = top_n
 
-    def forward(self, doc: str) -> list:
+    def forward(self, doc: str) -> list[str]:
         """
         Input:
             doc: The document to extract keywords from.
@@ -32,7 +32,7 @@ class DefaultLabeler:
             doc,
             keyphrase_ngram_range=self.keyphrase_ngram_range,
             stop_words="english",
-            top_n=self.top_n,
+            top_n=self.top_n
         )
         keywords = [word for word, prob in keywords if prob > self.threshold]
         return keywords
