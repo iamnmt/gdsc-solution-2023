@@ -1,5 +1,5 @@
-from core.registry import Registry
+from ..registry import Registry
 
-PREPROCESS = Registry("Preprocess")
+PREPROCESS_REGISTRY = Registry("PREPROCESS")
 
 from .preprocessing import *
