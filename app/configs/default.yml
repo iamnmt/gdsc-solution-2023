@@ -1,0 +1,14 @@
+preprocessor:
+    name: DefaultPreprocessor
+    args: null
+ocr:
+    name: DefaultOCR
+    args:
+        use_angle_cls: True 
+        lang: en
+labeler:
+    name: DefaultLabeler
+    args:
+        keyphrase_ngram_range: [1, 3]
+        threshold: 0.5
+        top_n: 10
