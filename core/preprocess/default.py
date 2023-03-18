@@ -14,6 +14,10 @@ class DefaultPreprocessor:
     def __init__(self) -> None:
         pass
     def forward(self, image: np.ndarray) -> np.ndarray:
+        assert len(image.shape) == 3, "Image must be 3D"
+        assert image.shape[2] == 3, "Image must be RGB"
+        assert image.dtype == np.uint8, "Image must be uint8"
+
         # Convert to grayscale
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
