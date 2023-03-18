@@ -10,7 +10,7 @@ class Extractor:
         self.keywords = []
         self.database = []
 
-    def _process(self, docs: list) -> None:
+    def _process(self, docs: str) -> None:
         '''
             (Private) Process keyword extraction
             Input: Document as string
@@ -40,7 +40,7 @@ class Extractor:
         self._process(doc)
         return self.keywords
 
-if __name__ = "__main__":
+if __name__ == "__main__":
     ex = Extractor(keyphrase_ngram_range=(1, 3), threshold=0.6)
     keywords = ex.get_keywords(doc=doc)
     print(keywords)
